@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Harness ReAct Execution Loop</title>
+  <desc id="desc">A two-layer architecture diagram showing prompt construction, language model reasoning, tool parsing and execution, observations, and history feedback.</desc>
+  <defs>
+    <marker id="arrow-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#204B72"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#D97706"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0F766E"/>
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+    <style>
+      .title { font: 700 38px Inter, "Segoe UI", Arial, sans-serif; fill: #102A43; }
+      .subtitle { font: 400 19px Inter, "Segoe UI", Arial, sans-serif; fill: #64748B; }
+      .lane-label { font: 700 16px Inter, "Segoe UI", Arial, sans-serif; letter-spacing: 2px; }
+      .box-title { font: 700 21px Inter, "Segoe UI", Arial, sans-serif; fill: #102A43; }
+      .box-sub { font: 500 15px Inter, "Segoe UI", Arial, sans-serif; fill: #526475; }
+      .chip { font: 600 14px Inter, "Segoe UI", Arial, sans-serif; fill: #334E68; }
+      .step { font: 700 16px Inter, "Segoe UI", Arial, sans-serif; fill: #FFFFFF; }
+      .edge-label { font: 600 14px Inter, "Segoe UI", Arial, sans-serif; fill: #526475; }
+      .legend { font: 600 14px Inter, "Segoe UI", Arial, sans-serif; fill: #526475; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FFFFFF"/>
+
+  <text x="70" y="72" class="title">Agent Harness: ReAct Execution Loop</text>
+  <text x="70" y="106" class="subtitle">Model reasoning, tool execution, and observation feedback in one auditable cycle</text>
+
+  <!-- Layer backgrounds -->
+  <rect x="55" y="150" width="1490" height="330" rx="24" fill="#F4F8FC" stroke="#C9D8E6" stroke-width="2"/>
+  <rect x="55" y="510" width="1490" height="275" rx="24" fill="#FFF8EE" stroke="#F2D4A5" stroke-width="2"/>
+  <rect x="78" y="172" width="156" height="34" rx="17" fill="#DCEAF5"/>
+  <text x="156" y="195" text-anchor="middle" class="lane-label" fill="#204B72">AGENT CORE</text>
+  <rect x="78" y="532" width="245" height="34" rx="17" fill="#FDE8C8"/>
+  <text x="200" y="555" text-anchor="middle" class="lane-label" fill="#A34F00">TOOLS &amp; ENVIRONMENT</text>
+
+  <!-- Task input -->
+  <rect x="85" y="282" width="122" height="74" rx="37" fill="#FFFFFF" stroke="#8DA9BF" stroke-width="2.5" filter="url(#soft-shadow)"/>
+  <circle cx="118" cy="319" r="10" fill="#204B72"/>
+  <text x="150" y="326" text-anchor="middle" class="box-title">Task</text>
+
+  <!-- Build Prompt -->
+  <rect x="270" y="238" width="280" height="164" rx="18" fill="#FFFFFF" stroke="#4E7EA7" stroke-width="2.5" filter="url(#soft-shadow)"/>
+  <circle cx="300" cy="270" r="18" fill="#204B72"/>
+  <text x="300" y="276" text-anchor="middle" class="step">1</text>
+  <text x="328" y="278" class="box-title">Build Prompt</text>
+  <text x="300" y="312" class="box-sub">Assemble the active context</text>
+  <rect x="300" y="335" width="68" height="34" rx="9" fill="#EAF2F8"/>
+  <rect x="376" y="335" width="62" height="34" rx="9" fill="#EAF2F8"/>
+  <rect x="446" y="335" width="74" height="34" rx="9" fill="#DDF3F0"/>
+  <text x="334" y="357" text-anchor="middle" class="chip">System</text>
+  <text x="407" y="357" text-anchor="middle" class="chip">Task</text>
+  <text x="483" y="357" text-anchor="middle" class="chip">History</text>
+
+  <!-- Language Model -->
+  <rect x="630" y="238" width="280" height="164" rx="18" fill="#EAF2F8" stroke="#204B72" stroke-width="3" filter="url(#soft-shadow)"/>
+  <circle cx="660" cy="270" r="18" fill="#204B72"/>
+  <text x="660" y="276" text-anchor="middle" class="step">2</text>
+  <text x="688" y="278" class="box-title">Language Model</text>
+  <text x="770" y="326" text-anchor="middle" class="box-sub">Reason about the next action</text>
+  <rect x="690" y="346" width="160" height="30" rx="15" fill="#FFFFFF" stroke="#AFC7DA"/>
+  <text x="770" y="366" text-anchor="middle" class="chip">assistant response</text>
+
+  <!-- Parse Tool Calls -->
+  <rect x="990" y="238" width="280" height="164" rx="18" fill="#FFFFFF" stroke="#4E7EA7" stroke-width="2.5" filter="url(#soft-shadow)"/>
+  <circle cx="1020" cy="270" r="18" fill="#204B72"/>
+  <text x="1020" y="276" text-anchor="middle" class="step">3</text>
+  <text x="1048" y="278" class="box-title">Parse Tool Calls</text>
+  <text x="1130" y="326" text-anchor="middle" class="box-sub">Validate names and arguments</text>
+  <path d="M 1095 349 L 1111 365 L 1148 338" fill="none" stroke="#0F766E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1174" y="361" class="chip">structured action</text>
+
+  <!-- Final answer -->
+  <rect x="1360" y="274" width="142" height="90" rx="18" fill="#FFFFFF" stroke="#738699" stroke-width="2.5" stroke-dasharray="7 6"/>
+  <text x="1431" y="313" text-anchor="middle" class="box-title">Final</text>
+  <text x="1431" y="340" text-anchor="middle" class="box-sub">Answer</text>
+
+  <!-- Execute Tools -->
+  <rect x="785" y="590" width="335" height="150" rx="18" fill="#FFFFFF" stroke="#D97706" stroke-width="3" filter="url(#soft-shadow)"/>
+  <circle cx="817" cy="622" r="18" fill="#D97706"/>
+  <text x="817" y="628" text-anchor="middle" class="step">4</text>
+  <text x="845" y="630" class="box-title">Execute Tools</text>
+  <rect x="817" y="666" width="83" height="36" rx="9" fill="#FFF0D9"/>
+  <rect x="910" y="666" width="91" height="36" rx="9" fill="#FFF0D9"/>
+  <rect x="1011" y="666" width="76" height="36" rx="9" fill="#FFF0D9"/>
+  <text x="858" y="689" text-anchor="middle" class="chip">Terminal</text>
+  <text x="955" y="689" text-anchor="middle" class="chip">Chess API</text>
+  <text x="1049" y="689" text-anchor="middle" class="chip">Skills</text>
+
+  <!-- Tool observations -->
+  <rect x="1230" y="590" width="272" height="150" rx="18" fill="#E4F4F1" stroke="#0F766E" stroke-width="3" filter="url(#soft-shadow)"/>
+  <circle cx="1262" cy="622" r="18" fill="#0F766E"/>
+  <text x="1262" y="628" text-anchor="middle" class="step">5</text>
+  <text x="1290" y="630" class="box-title">Tool Observations</text>
+  <text x="1366" y="674" text-anchor="middle" class="box-sub">Return outputs and errors</text>
+  <rect x="1297" y="692" width="138" height="26" rx="13" fill="#FFFFFF" stroke="#9ACEC6"/>
+  <text x="1366" y="710" text-anchor="middle" class="chip">role: tool</text>
+
+  <!-- Update history -->
+  <rect x="300" y="600" width="330" height="130" rx="18" fill="#E4F4F1" stroke="#0F766E" stroke-width="3" filter="url(#soft-shadow)"/>
+  <circle cx="332" cy="632" r="18" fill="#0F766E"/>
+  <text x="332" y="638" text-anchor="middle" class="step">6</text>
+  <text x="360" y="640" class="box-title">Update Message History</text>
+  <text x="465" y="682" text-anchor="middle" class="box-sub">Preserve reasoning, actions, and results</text>
+
+  <!-- Primary arrows -->
+  <path d="M 207 319 L 258 319" fill="none" stroke="#204B72" stroke-width="3" marker-end="url(#arrow-navy)"/>
+  <path d="M 550 319 L 618 319" fill="none" stroke="#204B72" stroke-width="3" marker-end="url(#arrow-navy)"/>
+  <path d="M 910 319 L 978 319" fill="none" stroke="#204B72" stroke-width="3" marker-end="url(#arrow-navy)"/>
+  <path d="M 1270 319 L 1348 319" fill="none" stroke="#738699" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrow-navy)"/>
+  <text x="1308" y="301" text-anchor="middle" class="edge-label">complete</text>
+
+  <path d="M 1130 402 L 1130 528 Q 1130 550 1108 550 L 974 550 Q 953 550 953 578" fill="none" stroke="#D97706" stroke-width="3.5" marker-end="url(#arrow-orange)"/>
+  <text x="1150" y="507" class="edge-label">tool calls</text>
+  <path d="M 1120 665 L 1218 665" fill="none" stroke="#D97706" stroke-width="3.5" marker-end="url(#arrow-orange)"/>
+  <path d="M 1230 718 C 1060 815, 790 820, 642 706" fill="none" stroke="#0F766E" stroke-width="4" marker-end="url(#arrow-teal)"/>
+  <text x="923" y="810" text-anchor="middle" class="edge-label">observation feedback</text>
+  <path d="M 300 665 C 206 665, 190 574, 237 505 C 260 471, 313 459, 363 459 L 388 459 C 409 459, 410 431, 410 414" fill="none" stroke="#0F766E" stroke-width="4" marker-end="url(#arrow-teal)"/>
+  <text x="186" y="558" text-anchor="middle" class="edge-label">next step</text>
+
+  <!-- Legend -->
+  <g transform="translate(70,836)">
+    <text x="0" y="0" class="legend">FLOW</text>
+    <line x1="65" y1="-5" x2="105" y2="-5" stroke="#204B72" stroke-width="4"/>
+    <text x="116" y="0" class="legend">reasoning</text>
+    <line x1="218" y1="-5" x2="258" y2="-5" stroke="#D97706" stroke-width="4"/>
+    <text x="269" y="0" class="legend">actions</text>
+    <line x1="352" y1="-5" x2="392" y2="-5" stroke="#0F766E" stroke-width="4"/>
+    <text x="403" y="0" class="legend">observations</text>
+  </g>
+</svg>
